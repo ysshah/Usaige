@@ -1,0 +1,11 @@
+# SwiftPM build artifacts
+.build/
+
+# Generated app bundle (rebuilt via scripts/make-app.sh)
+Usaige.app/
+
+# SwiftPM / Xcode local metadata
+.swiftpm/
+
+# macOS
+.DS_Store
