@@ -17,9 +17,6 @@ struct UsageSummary: Sendable {
     var fiveHour: UsageWindow
     var weekly: UsageWindow
     var credits: CreditsInfo?
-
-    /// Worst (highest) utilization across this provider's windows — drives the menu bar number.
-    var worstPercent: Int { max(fiveHour.percent, weekly.percent) }
 }
 
 // MARK: - Claude raw response (GET /api/oauth/usage)

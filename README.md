@@ -3,7 +3,7 @@
 A tiny macOS menu bar app that shows how close you are to your **5-hour** and **weekly**
 usage limits for **Claude** (Claude Code) and **Codex**.
 
-The menu bar shows each tool's worst-case window, e.g. `C 4% · X 37%`. Open the dropdown
+The menu bar shows each tool's five-hour window, e.g. `C 4% · X 37%`. Open the dropdown
 for the full breakdown (both windows, reset times, credits, last updated), a refresh button,
 a launch-at-login toggle, and quit.
 

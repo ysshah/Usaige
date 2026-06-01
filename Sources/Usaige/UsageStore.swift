@@ -10,7 +10,7 @@ enum ProviderState {
     var barFragment: String {
         switch self {
         case .loading: return "…"
-        case .ok(let s): return "\(s.worstPercent)%"
+        case .ok(let s): return "\(s.fiveHour.percent)%"
         case .error: return "⚠"
         }
     }
