@@ -18,7 +18,7 @@ Both numbers come from credentials already on your machine — no extra login:
 - **Codex** → `GET https://chatgpt.com/backend-api/wham/usage`, authed with the token +
   account id in `~/.codex/auth.json` (written by Codex).
 
-Credentials are read fresh on every poll (default every 60s, plus on demand), so the app
+Credentials are read fresh on every poll (default every 300s, plus on demand), so the app
 picks up tokens that the CLIs refresh in place. If a token has expired, that tool shows `⚠`
 in the bar and a hint in the dropdown — just use the CLI once to refresh it.
 

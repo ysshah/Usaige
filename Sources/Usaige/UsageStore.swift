@@ -24,7 +24,7 @@ final class UsageStore {
     var lastUpdated: Date?
 
     /// Polling cadence.
-    private let interval: Duration = .seconds(60)
+    private let interval: Duration = .seconds(300)
     private var pollTask: Task<Void, Never>?
 
     /// Menu bar label, e.g. "C 4% · X 37%".
@@ -37,7 +37,7 @@ final class UsageStore {
         pollTask = Task { [weak self] in
             while !Task.isCancelled {
                 await self?.refresh()
-                try? await Task.sleep(for: self?.interval ?? .seconds(60))
+                try? await Task.sleep(for: self?.interval ?? .seconds(300))
             }
         }
     }
