@@ -105,13 +105,28 @@ struct MenuContentView: View {
         return "Updated \(f.string(from: date))"
     }
 
-    private static let relative: RelativeDateTimeFormatter = {
-        let f = RelativeDateTimeFormatter()
-        f.unitsStyle = .abbreviated
-        return f
-    }()
-
     static func resetText(_ date: Date) -> String {
-        "resets \(relative.localizedString(for: date, relativeTo: Date()))"
+        "resets in \(durationText(until: date))"
+    }
+
+    private static func durationText(until date: Date, from now: Date = Date()) -> String {
+        let seconds = max(0, Int(date.timeIntervalSince(now)))
+        let days = seconds / 86_400
+        let hours = seconds / 3_600 % 24
+        let minutes = seconds / 60 % 60
+
+        if days > 0 {
+            return hours > 0 ? "\(days)d \(hours)h" : "\(days)d"
+        }
+
+        if hours > 0 {
+            return minutes > 0 ? "\(hours)h \(minutes)m" : "\(hours)h"
+        }
+
+        if minutes > 0 {
+            return "\(minutes)m"
+        }
+
+        return "<1m"
     }
 }
