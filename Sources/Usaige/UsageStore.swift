@@ -22,6 +22,7 @@ final class UsageStore {
     var claude: ProviderState = .loading
     var codex: ProviderState = .loading
     var lastUpdated: Date?
+    private(set) var isPaused = false
 
     /// Polling cadence.
     private let interval: Duration = .seconds(300)
@@ -33,6 +34,7 @@ final class UsageStore {
     }
 
     func start() {
+        isPaused = false
         guard pollTask == nil else { return }
         pollTask = Task { [weak self] in
             while !Task.isCancelled {
@@ -42,7 +44,15 @@ final class UsageStore {
         }
     }
 
+    func pause() {
+        isPaused = true
+        pollTask?.cancel()
+        pollTask = nil
+    }
+
     func refresh() async {
+        guard !isPaused, !Task.isCancelled else { return }
+
         async let claudeResult = Self.load { try await ClaudeClient().fetch() }
         async let codexResult = Self.load { try await CodexClient().fetch() }
         claude = await claudeResult
